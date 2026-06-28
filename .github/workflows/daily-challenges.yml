@@ -1,0 +1,26 @@
+name: Post Daily Challenges
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # UTC midnight every day
+  workflow_dispatch:      # Allow manual trigger
+
+jobs:
+  post-challenges:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r bot/requirements.txt
+
+      - name: Run bot
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python bot/bot.py --post-now

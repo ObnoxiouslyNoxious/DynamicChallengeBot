@@ -1,0 +1,112 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #3a3a3a;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px;
+}
+
+.panel {
+  width: 100%;
+  max-width: 310px;
+  background: #000000;
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 0 0 0.5px #ffffff;
+}
+
+.panel-title {
+  text-align: center;
+  padding: 8px 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #c8a84e;
+  letter-spacing: 0.3px;
+  background: #222222;
+  box-shadow: inset 0 -0.5px 0 #c8a84e;
+}
+
+.challenges-panel {
+  margin: 10px 6px;
+  border: none;
+  box-shadow: 0 0 0 0.5px #ffffff;
+}
+
+.challenges-list {
+  padding: 0 0 4px 0;
+}
+
+.challenge-row {
+  padding: 14px 10px;
+}
+
+.challenge-row:nth-child(odd) {
+  background: #000000;
+}
+
+.challenge-row:nth-child(even) {
+  background: #111111;
+}
+
+.challenge-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.panel-footer {
+  background: #222222;
+  padding: 20px 10px 24px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #aaa;
+  line-height: 1.5;
+  box-shadow: inset 0 0.5px 0 #c8a84e;
+}
+
+.panel-footer .footer-heading {
+  color: #c8a84e;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.panel-footer .footer-heading:first-child {
+  margin-top: 0;
+}
+
+.panel-footer .footer-text {
+  color: #999;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 300px) {
+  body {
+    padding: 16px 8px;
+  }
+
+  .panel {
+    max-width: 100%;
+  }
+
+  .challenge-title {
+    font-size: 0.8rem;
+  }
+}
