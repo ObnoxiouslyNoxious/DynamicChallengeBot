@@ -9,13 +9,36 @@
 <body>
   <div class="panel">
     <div class="panel-title" id="panel-title">Daily Challenges</div>
+    <div class="panel-reset" id="panel-reset">Challenges Reset: --:--</div>
     <div class="challenges-panel">
       <div class="challenges-list" id="challenges-list"></div>
     </div>
     <div class="panel-footer" id="panel-footer">
-      <div class="footer-heading">Website Information</div>
-      <div class="footer-text">Data mirrors in-game challenge selection. All times UTC.</div>
-      <div class="footer-text">Algorithm replicates the server's deterministic daily challenge selection.</div>
+      <div class="footer-heading">Download the Mod on Steam:</div>
+      <a class="steam-mod-card" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3752111970" target="_blank" rel="noopener noreferrer">
+        <img class="steam-mod-thumb" src="img/dcs.png" alt="Daily Challenges &amp; Leaderboard" loading="lazy">
+        <div class="steam-mod-info">
+          <div class="steam-mod-title">[B42] Daily Challenges &amp; Leaderboard [MP]</div>
+          <div class="steam-mod-stats">
+            <span class="steam-stat" title="Unique Visitors">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span class="steam-stat-val" id="dc-views">-</span>
+            </span>
+            <span class="steam-stat" title="Subscribers">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span class="steam-stat-val" id="dc-subs">-</span>
+            </span>
+            <span class="steam-stat" title="Favourites">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span class="steam-stat-val" id="dc-favs">-</span>
+            </span>
+            <span class="steam-stat" title="Likes">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+              <span class="steam-stat-val" id="dc-likes">-</span>
+            </span>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
   <script src="script.js"></script>

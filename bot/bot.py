@@ -140,10 +140,8 @@ def post_challenges(challenges, date_str):
     date_formatted = f"{day}{suffix} {month} {year}"
 
     challenge_lines = []
-    for i, ch in enumerate(challenges):
+    for ch in challenges:
         challenge_lines.append(f"**{ch['title']}**")
-        if i < len(challenges) - 1:
-            challenge_lines.append("- - - - - - - - - - - - - - - - - - -")
 
     challenges_text = "\n".join(challenge_lines)
 
@@ -152,7 +150,7 @@ def post_challenges(challenges, date_str):
         "description": challenges_text,
         "color": 0xC8A84E,
         "footer": {
-            "text": "Website Information\nData mirrors in-game challenge selection. All times UTC."
+            "text": "Website Information | Data mirrors in-game challenge selection. All times UTC."
         }
     }
 

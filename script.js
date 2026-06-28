@@ -14321,4 +14321,48 @@ document.addEventListener('DOMContentLoaded', function() {
             list.appendChild(row);
         });
     }
+
+    function updateResetTimer() {
+        var now = new Date();
+        var utcMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1, 0, 0, 0));
+        var diff = utcMidnight - now;
+        var hours = Math.floor(diff / 3600000);
+        var minutes = Math.floor((diff % 3600000) / 60000);
+        var resetEl = document.getElementById('panel-reset');
+        if (resetEl) {
+            resetEl.textContent = 'Challenges Reset: ' + hours + 'h ' + minutes + 'm';
+        }
+    }
+
+    updateResetTimer();
+    setInterval(updateResetTimer, 60000);
+
+    function fmt(n) {
+        n = parseInt(n, 10);
+        if (isNaN(n) || n < 0) return '0';
+        if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'k';
+        return n.toString();
+    }
+
+    async function fetchModStats() {
+        try {
+            var res = await fetch('https://steam-stats-proxy.obnoxiouslynoxious.workers.dev/mods');
+            var data = await res.json();
+            var mods = data.mods || [];
+            var dcMod = mods.find(function(m) { return m.id === '3752111970'; });
+            if (dcMod) {
+                var viewsEl = document.getElementById('dc-views');
+                var subsEl = document.getElementById('dc-subs');
+                var favsEl = document.getElementById('dc-favs');
+                var likesEl = document.getElementById('dc-likes');
+                if (viewsEl) viewsEl.textContent = fmt(dcMod.views);
+                if (subsEl) subsEl.textContent = fmt(dcMod.subscriptions);
+                if (favsEl) favsEl.textContent = fmt(dcMod.favorited);
+                if (likesEl) likesEl.textContent = fmt(dcMod.votes_up);
+            }
+        } catch (e) {
+        }
+    }
+
+    fetchModStats();
 });
