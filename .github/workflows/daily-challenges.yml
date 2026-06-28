@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r bot/requirements.txt
 
+      - name: Install Playwright browsers
+        run: python -m playwright install chromium
+
       - name: Run bot
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
