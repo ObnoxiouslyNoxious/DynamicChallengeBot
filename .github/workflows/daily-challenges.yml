@@ -1,9 +1,7 @@
 name: Post Daily Challenges
 
 on:
-  schedule:
-    - cron: '0 0 * * *'  # UTC midnight every day
-  workflow_dispatch:      # Allow manual trigger
+  workflow_dispatch:      # Triggered externally by cron-job.org
 
 jobs:
   post-challenges:

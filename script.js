@@ -14322,6 +14322,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function matchPanelHeights() {
+        var challengesTab = document.getElementById('tab-challenges');
+        var aboutTab = document.getElementById('tab-about');
+        var supportersTab = document.getElementById('tab-supporters');
+        if (!challengesTab || !aboutTab || !supportersTab) return;
+
+        var wasHidden = !challengesTab.classList.contains('active');
+        if (wasHidden) {
+            challengesTab.style.display = 'flex';
+            challengesTab.style.position = 'absolute';
+            challengesTab.style.visibility = 'hidden';
+        }
+
+        var height = challengesTab.offsetHeight;
+
+        if (wasHidden) {
+            challengesTab.style.display = '';
+            challengesTab.style.position = '';
+            challengesTab.style.visibility = '';
+        }
+
+        if (height > 0) {
+            var adjusted = height + 35;
+            aboutTab.style.minHeight = adjusted + 'px';
+            aboutTab.style.maxHeight = adjusted + 'px';
+            supportersTab.style.minHeight = adjusted + 'px';
+            supportersTab.style.maxHeight = adjusted + 'px';
+        }
+    }
+
+    matchPanelHeights();
+
+    var challengesResizeObserver = new ResizeObserver(function() {
+        matchPanelHeights();
+    });
+    if (list) challengesResizeObserver.observe(list);
+
     function updateResetTimer() {
         var now = new Date();
         var utcMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1, 0, 0, 0));
@@ -14332,10 +14369,38 @@ document.addEventListener('DOMContentLoaded', function() {
         if (resetEl) {
             resetEl.textContent = 'Challenges Reset: ' + hours + 'h ' + minutes + 'm';
         }
+        if (hours === 0 && minutes === 0) {
+            matchPanelHeights();
+        }
     }
 
     updateResetTimer();
     setInterval(updateResetTimer, 60000);
+
+    var tabBtns = document.querySelectorAll('.tab-btn');
+    tabBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            tabBtns.forEach(function(b) { b.classList.remove('active'); });
+            document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+            btn.classList.add('active');
+            var tabId = 'tab-' + btn.getAttribute('data-tab');
+            var tabEl = document.getElementById(tabId);
+            if (tabEl) tabEl.classList.add('active');
+            matchPanelHeights();
+        });
+    });
+
+    var aboutBtns = document.querySelectorAll('.about-tab-btn');
+    aboutBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            aboutBtns.forEach(function(b) { b.classList.remove('active'); });
+            document.querySelectorAll('.about-section').forEach(function(s) { s.classList.remove('active'); });
+            btn.classList.add('active');
+            var sectionId = 'about-' + btn.getAttribute('data-about');
+            var sectionEl = document.getElementById(sectionId);
+            if (sectionEl) sectionEl.classList.add('active');
+        });
+    });
 
     function fmt(n) {
         n = parseInt(n, 10);
@@ -14365,4 +14430,40 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     fetchModStats();
+
+    function renderSupporters() {
+        var data = window.SUPPORTERS_DATA;
+        if (!data) return;
+
+        var tiers = { gold: 'names-gold', silver: 'names-silver', bronze: 'names-bronze' };
+        for (var tier in tiers) {
+            var el = document.getElementById(tiers[tier]);
+            var wrapper = document.getElementById('tier-' + tier);
+            if (!el) continue;
+            var names = data.subscribers[tier] || [];
+            if (names.length === 0) {
+                wrapper.style.display = 'none';
+            } else {
+                el.innerHTML = names.join('<br>');
+            }
+        }
+
+        var list = document.getElementById('recent-supporters');
+        if (list) {
+            list.innerHTML = '';
+            var recent = data.recent || [];
+            if (recent.length === 0) {
+                list.innerHTML = '<div class="supporter-empty">No supporters yet</div>';
+            } else {
+                recent.forEach(function(s) {
+                    var row = document.createElement('div');
+                    row.className = 'supporter-row';
+                    row.innerHTML = '<span class="supporter-name">' + s.name + '</span>';
+                    list.appendChild(row);
+                });
+            }
+        }
+    }
+
+    renderSupporters();
 });

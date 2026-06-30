@@ -5,42 +5,199 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daily Challenges &amp; Leaderboard - Project Zomboid</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="img/dcsfavicon.png" type="image/png">
 </head>
 <body>
   <div class="panel">
     <div class="panel-title" id="panel-title">Daily Challenges</div>
-    <div class="panel-reset" id="panel-reset">Challenges Reset: --:--</div>
-    <div class="challenges-panel">
-      <div class="challenges-list" id="challenges-list"></div>
+    <div class="panel-tabs">
+      <button class="tab-btn" data-tab="about">Information</button>
+      <button class="tab-btn active" data-tab="challenges">Challenges</button>
+      <button class="tab-btn" data-tab="supporters">Supporters</button>
     </div>
-    <div class="panel-footer" id="panel-footer">
-      <div class="footer-heading">Download the Mod on Steam:</div>
-      <a class="steam-mod-card" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3752111970" target="_blank" rel="noopener noreferrer">
-        <img class="steam-mod-thumb" src="img/dcs.png" alt="Daily Challenges &amp; Leaderboard" loading="lazy">
-        <div class="steam-mod-info">
-          <div class="steam-mod-title">[B42] Daily Challenges &amp; Leaderboard [MP]</div>
-          <div class="steam-mod-stats">
-            <span class="steam-stat" title="Unique Visitors">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-              <span class="steam-stat-val" id="dc-views">-</span>
-            </span>
-            <span class="steam-stat" title="Subscribers">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              <span class="steam-stat-val" id="dc-subs">-</span>
-            </span>
-            <span class="steam-stat" title="Favourites">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <span class="steam-stat-val" id="dc-favs">-</span>
-            </span>
-            <span class="steam-stat" title="Likes">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
-              <span class="steam-stat-val" id="dc-likes">-</span>
-            </span>
+    <div class="tab-content active" id="tab-challenges">
+      <div class="panel-reset" id="panel-reset">Challenges Reset: --:--</div>
+      <div class="challenges-panel">
+        <div class="challenges-list" id="challenges-list"></div>
+      </div>
+      <div class="tab-footer">
+        <div class="footer-text">Challenges reset Daily at Midnight UTC</div>
+        <br>
+        <div class="footer-text">Complete all 7 Daily Challenges to<br>reveal the Token Vendor's Locations</div>
+        <br>
+        <div class="footer-text">Maintain a Daily Streak of 28 Days<br>to be awarded Bonus Tokens</div>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-about">
+      <div class="about-tabs">
+        <button class="about-tab-btn active" data-about="aboutinfo">About</button>
+        <button class="about-tab-btn" data-about="download">Download</button>
+        <button class="about-tab-btn" data-about="faq">FAQ</button>
+      </div>
+      <div class="about-content">
+        <div class="about-panel">
+          <div class="about-section about-aboutinfo active" id="about-aboutinfo">
+            <div class="supporters-header">About<br>[B42] Daily Challenges &amp; Leaderboard [SP/MP]</div>
+            <div class="about-section-body">
+              <div class="about-text">Daily Challenges &amp; Leaderboard gives your Project Zomboid playthrough a brand-new progression system which incentivizes Players to keep logging in Daily. Every day at Midnight (UTC), 7 new Challenges become available for Players to complete. Complete Challenges to earn tokens and then exchange those tokens for Items at the 'Token Vendor'.</div>
+            </div>
+            <div class="supporters-header">Challenge Types</div>
+            <div class="about-section-body">
+              <div class="about-text">Challenges are divided into 7 Categories:</div>
+              <div class="about-text"><strong>Kills/Weapon:</strong> Slay Zombies with anything from a Broom to an M16 Assault Rifle. Challenges range from generic Zombie killing headcounts to weapon-specific kill counts covering almost every melee weapon, firearm, and improvised weapon in the game. (318 Challenges)</div>
+              <div class="about-text"><strong>Quest/Deliver:</strong> Find the required item(s), travel to the location and deposit them into the designated Safe. (93 Items across 1,193 Locations = 110,949 unique Challenge combinations)</div>
+              <div class="about-text"><strong>Find the Gnome:</strong> David's cousin, Barney the Gnome has landed in Knox Country. Head to the location and find Barney to complete the challenge. (1,193 Locations)</div>
+              <div class="about-text"><strong>Eat/Drink:</strong> Cook and consume specific meals, find and consume non-perishable food and drinks or forage/farm and consume some fresh produce. (168 Challenges)</div>
+              <div class="about-text"><strong>Fish/Hunt/Forage:</strong> Reel in a specific fish species, hunt a wild animal, or forage for materials and supplies in the wilderness. (52 Challenges)</div>
+              <div class="about-text"><strong>Craft/Build:</strong> Craft tools, weapons, and clothes from raw materials, or build walls, fences, doors, crates, and other structures. (223 Challenges)</div>
+              <div class="about-text"><strong>Miscellaneous:</strong> Travel a set distance by foot or in a Vehicle. Read books and magazines. Change your hairstyle or apply makeup. Install or remove vehicle parts and more. (122 Challenges)</div>
+            </div>
+            <div class="supporters-header">Streaks &amp; Rewards</div>
+            <div class="about-section-body">
+              <div class="about-text">Complete 1 Challenge per day to maintain a Streak. Maintaining a Daily Streak pushes you through 4 reward tiers over 28 days. Early tiers pay 1 Token per Challenge; the final tier pays 4 Tokens per Challenge. Finish all 7 Challenges in one day for bonus Tokens. Complete a 28 day Streak for a 25-token milestone before the cycle resets.</div>
+            </div>
+            <div class="supporters-header">Token Vendors</div>
+            <div class="about-section-body">
+              <div class="about-text">Exchange Tokens for Items. Available Items and quantities are randomized daily. Two random Vendor locations spawn each day — one on the east side of the map, one on the west. Each one carries different items. Complete all 7 Challenges per day to unlock their Locations.</div>
+            </div>
+            <div class="supporters-header">Leaderboard/Hall of Fame</div>
+            <div class="about-section-body">
+              <div class="about-text">Earn your place on the Leaderboard by competing with other Players on the Server for the Most Challenges Completed, Longest Streak, Fastest Challenge Completion time and more. In Singleplayer, the Hall of Fame displays your Character's best efforts in Most Challenges Complete and Fastest Completion Times.</div>
+            </div>
+            <div class="supporters-header">Admin Tools</div>
+            <div class="about-section-body">
+              <div class="about-text">In Multiplayer, Admin enabled accounts can access the Admin Panel which allows them to control Data Backup + Restore, Shop stock editing, Leaderboard Reset, and more Tools to manage server-wide and per-user statistics. In Singleplayer, these Admin Tools can be accessed by launching the game in Debug Mode.</div>
+            </div>
+            <div class="supporters-header">Compatibility</div>
+            <div class="about-section-body">
+              <div class="about-text">- Build 42.15+</div>
+              <div class="about-text">- Compatible with Multiplayer (Dedicated &amp; Hosted) and Singleplayer</div>
+              <div class="about-text">- Server authoritative validation to prevent client-side exploits.</div>
+              <div class="about-text">- Compatible with most other Mods. All Items from other Mods are available to be added to the Token Vendor Shop via the Admin's 'Vendor Editor' panel. May have some visual conflicts with Mods that add a sidebar icon or Mods that add a button to the Vanilla PZ Admin Menu. Modded Weapons at this time do not count towards kill challenges (but may be supported in Future Updates).</div>
+              <div class="about-text">- Supports all Font Size Settings.</div>
+              <div class="about-text">- Supported Languages: EN, FR, DE, ES, PTBR, RU, AR, CN</div>
+            </div>
+            <div class="supporters-header">Future Updates</div>
+            <div class="about-section-body">
+              <div class="about-text">- More Challenge Types (Medical, PvP etc.) and extra Challenge variety.</div>
+              <div class="about-text">- Translation Improvements (Full translations for Challenges with Item Names, Locations, Build/Craft Recipes + more)</div>
+              <div class="about-text">- V2 System including Admin configuration panel for toggling reward modes, options for currency types and default reward values, Vendor settings, rolling leaderboard history + more</div>
+            </div>
+            <div class="supporters-header">Credits</div>
+            <div class="about-section-body">
+              <div class="about-text">Special thanks to iDestin for Commissioning this Mod. Be sure to check out his hardcore realistic PvP Server '<a class="about-link" href="https://discord.gg/J2GFq35sj4" target="_blank" rel="noopener noreferrer">Zombie Land</a>'</div>
+              <div class="about-text">Mod Testers: iDestin &amp; Anthea</div>
+              <div class="about-text">Translations: ifrit_47 (RU &amp; ES) &amp; <a class="about-link" href="https://www.youtube.com/@itsbringr" target="_blank" rel="noopener noreferrer">itsbringr</a> (CN) - All other Languages were auto-translated. If you're interested in assisting with Translations, please contact me via my <a class="about-link" href="https://discord.gg/invite/yYB4EDxm2h" target="_blank" rel="noopener noreferrer">Discord Server</a>.</div>
+            </div>
+          </div>
+          <div class="about-section about-download" id="about-download">
+            <div class="footer-heading">Download the Mod on Steam:</div>
+            <br>
+            <a class="steam-mod-card" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3752111970" target="_blank" rel="noopener noreferrer">
+              <img class="steam-mod-thumb" src="img/dcs.png" alt="Daily Challenges &amp; Leaderboard" loading="lazy">
+              <div class="steam-mod-info">
+                <div class="steam-mod-title">[B42] Daily Challenges &amp; Leaderboard [MP]</div>
+                <div class="steam-mod-stats">
+                  <span class="steam-stat" title="Unique Visitors">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <span class="steam-stat-val" id="dc-views">-</span>
+                  </span>
+                  <span class="steam-stat" title="Subscribers">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span class="steam-stat-val" id="dc-subs">-</span>
+                  </span>
+                  <span class="steam-stat" title="Favourites">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <span class="steam-stat-val" id="dc-favs">-</span>
+                  </span>
+                  <span class="steam-stat" title="Likes">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                    <span class="steam-stat-val" id="dc-likes">-</span>
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="about-section about-faq" id="about-faq">
+            <div class="supporters-header faq-header">"Is this Mod for Multiplayer and Singleplayer?"</div>
+            <div class="about-section-body">
+              <div class="about-text">Yes, this Mod is functional with both Multiplayer (Hosted &amp; Dedicated) and Singleplayer.</div>
+            </div>
+            <div class="supporters-header faq-header">"I've found a Bug, what do I do?"</div>
+            <div class="about-section-body">
+              <div class="about-text">You can make a Bug Report in the #bug-reports channel in my <a class="about-link" href="https://discord.gg/invite/yYB4EDxm2h" target="_blank" rel="noopener noreferrer">Discord</a>.</div>
+              <div class="about-text">Ensure you provide as much information as possible, including:</div>
+              <br>
+              <div class="about-text">What happened?</div>
+              <div class="about-text">(Describe the bug in your own words)</div>
+              <br>
+              <div class="about-text">What you expected to happen</div>
+              <div class="about-text">(What should have happened instead?)</div>
+              <br>
+              <div class="about-text">Please Attach:</div>
+              <div class="about-text">Screenshot(s) or Video</div>
+              <div class="about-text">(Visual evidence is always helpful)</div>
+              <br>
+              <div class="about-text">If the game crashed or threw an error, please provide a client/server log/console file</div>
+              <div class="about-text">(Paste the relevant section or upload the entire file)</div>
+              <br>
+              <div class="about-text">Your assistance in reporting Bugs</div>
+              <div class="about-text">helps get them fixed ASAP and</div>
+              <div class="about-text">ensures the Mod is enjoyable for everyone.</div>
+            </div>
           </div>
         </div>
-      </a>
+      </div>
+      <div class="tab-footer">
+        <div class="footer-text">Want to stay updated with my PZ Mods?</div>
+        <br>
+        <div class="footer-text">Join My <a class="about-link" href="https://discord.gg/invite/yYB4EDxm2h" target="_blank" rel="noopener noreferrer">Discord</a></div>
+        <br>
+        <div class="footer-text">Contact Details:</div>
+        <div class="footer-text">Discord: obnoxiouslynoxious</div>
+        <div class="footer-text">Email: cogito.ergo.olfacio@gmail.com</div>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-supporters">
+      <div class="panel-reset">♡ Thank you to all of my Supporters and Subscribers ♡</div>
+      <div class="supporters-content">
+        <div class="supporters-section">
+          <div class="supporters-header">Current Subscribers</div>
+          <div class="supporters-body">
+            <div class="supporters-tier" id="tier-gold">
+              <div class="tier-label tier-gold">Gold Subscribers</div>
+              <div class="tier-names" id="names-gold"></div>
+            </div>
+            <div class="supporters-tier" id="tier-silver">
+              <div class="tier-label tier-silver">Silver Subscribers</div>
+              <div class="tier-names" id="names-silver"></div>
+            </div>
+            <div class="supporters-tier" id="tier-bronze">
+              <div class="tier-label tier-bronze">Bronze Subscribers</div>
+              <div class="tier-names" id="names-bronze"></div>
+            </div>
+          </div>
+        </div>
+        <div class="supporters-section">
+          <div class="supporters-header">Recent Supporters</div>
+          <div class="supporters-body supporters-crop" id="recent-supporters"></div>
+        </div>
+      </div>
+      <div class="tab-footer">
+        <div class="footer-text">Want to Support my Work?</div>
+        <br>
+        <div class="footer-text">Rating/Liking, Favouriting, Subscribing to the Mod is enough.</div>
+        <br>
+        <div class="footer-text">If you wish to go above and beyond, and have the means</div>
+        <div class="footer-text">to do so, you can buy me a Bottle of Bleach or become</div>
+        <div class="footer-text">a Subscriber via <a class="about-link" href="https://ko-fi.com/obnoxiouslynoxious" target="_blank" rel="noopener noreferrer">Ko-Fi</a></div>
+      </div>
     </div>
   </div>
+  <a href="https://obnoxiouslynoxious.github.io/" class="home-link">
+    <img src="img/obnox.png" alt="Obnoxiously Noxious">
+  </a>
+  <script src="json/supporters.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
