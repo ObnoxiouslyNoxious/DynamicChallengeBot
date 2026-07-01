@@ -170,7 +170,7 @@ def post_challenges(challenges, date_str):
             page = browser.new_page(viewport={"width": 400, "height": 800})
             page.goto(f"file:///{html_path.resolve()}")
             page.wait_for_timeout(3000)
-            page.locator(".panel-tabs").set_attribute("style", "display:none")
+            page.locator(".panel-tabs").evaluate("el => el.style.display = 'none'")
             page.wait_for_timeout(500)
             panel = page.locator(".panel")
             footer = page.locator(".tab-content.active .tab-footer")
