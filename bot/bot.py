@@ -169,13 +169,19 @@ def post_challenges(challenges, date_str):
             browser = p.chromium.launch(headless=True)
             page = browser.new_page(viewport={"width": 400, "height": 800})
             page.goto(f"file:///{html_path.resolve()}")
-            page.wait_for_timeout(2000)
+            page.wait_for_timeout(3000)
             page.locator(".panel-tabs").set_attribute("style", "display:none")
             page.wait_for_timeout(500)
             panel = page.locator(".panel")
             footer = page.locator(".tab-content.active .tab-footer")
             panel_box = panel.bounding_box()
+            footer.scroll_into_view_if_needed()
+            page.wait_for_timeout(500)
             footer_box = footer.bounding_box()
+            print(f"Panel box: {panel_box}")
+            print(f"Footer box: {footer_box}")
+            if not panel_box or not footer_box:
+                raise Exception("Could not locate panel or footer elements")
             clip = {
                 "x": panel_box["x"],
                 "y": panel_box["y"],
@@ -196,7 +202,9 @@ def post_challenges(challenges, date_str):
 
         return response.status_code
     except Exception as e:
+        import traceback
         print(f"Screenshot error: {e}")
+        print(traceback.format_exc())
         payload = {"content": f"**Daily Challenges - {date_formatted}**\n\n{challenges_text}"}
         response = requests.post(WEBHOOK_URL, json=payload)
         return response.status_code
