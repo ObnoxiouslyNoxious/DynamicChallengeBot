@@ -14433,6 +14433,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     fetchModStats();
 
+    fetch('https://steam-stats-proxy.obnoxiouslynoxious.workers.dev/visitors?site=dcs')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var el = document.getElementById('visitor-count');
+        if (el) el.textContent = fmt(data.visitors);
+      })
+      .catch(function() {
+        var el = document.getElementById('visitor-count');
+        if (el) el.textContent = '0';
+      });
+
     function renderSupporters() {
         var data = window.SUPPORTERS_DATA;
         if (!data) return;
