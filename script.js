@@ -14420,10 +14420,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 var subsEl = document.getElementById('dc-subs');
                 var favsEl = document.getElementById('dc-favs');
                 var likesEl = document.getElementById('dc-likes');
+                var titleEl = document.getElementById('dc-title');
                 if (viewsEl) viewsEl.textContent = fmt(dcMod.views);
                 if (subsEl) subsEl.textContent = fmt(dcMod.subscriptions);
                 if (favsEl) favsEl.textContent = fmt(dcMod.favorited);
                 if (likesEl) likesEl.textContent = fmt(dcMod.votes_up);
+                if (titleEl && dcMod.name) titleEl.textContent = dcMod.name;
             }
         } catch (e) {
         }
