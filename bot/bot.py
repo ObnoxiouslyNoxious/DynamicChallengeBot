@@ -1,14 +1,3 @@
-"""
-Daily Challenges Discord Bot - Posts daily challenges via webhook at UTC midnight.
-Matches the exact algorithm from the DailyChallenges_Website.
-
-Setup:
-  1. Install dependencies:  pip install requests schedule
-  2. Create a Discord webhook in your channel (Server Settings > Integrations > Webhooks)
-  3. Set the WEBHOOK_URL variable below to your webhook URL
-  4. Run:  python bot.py
-"""
-
 import json
 import os
 import time
