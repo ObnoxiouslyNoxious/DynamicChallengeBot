@@ -140,7 +140,7 @@ def post_challenges(challenges, date_str):
 
     if WEBHOOK_URL == "YOUR_WEBHOOK_URL_HERE":
         print("[WARNING] WEBHOOK_URL not set. Printing challenges to console:")
-        print(f"\n  Daily Challenges - {date_formatted}")
+        print(f"\n  Dynamic Challenges - {date_formatted}")
         print("  " + "=" * 35)
         for ch in challenges:
             print(f"  {ch['title']}")
@@ -183,7 +183,7 @@ def post_challenges(challenges, date_str):
         with open(screenshot_path, "rb") as f:
             image_bytes = f.read()
 
-        files = {"file": ("daily_challenges.png", image_bytes, "image/png")}
+        files = {"file": ("Dynamic_challenges.png", image_bytes, "image/png")}
         response = requests.post(WEBHOOK_URL, files=files)
 
         if screenshot_path.exists():
@@ -194,11 +194,11 @@ def post_challenges(challenges, date_str):
         import traceback
         print(f"Screenshot error: {e}")
         print(traceback.format_exc())
-        payload = {"content": f"**Daily Challenges - {date_formatted}**\n\n{challenges_text}"}
+        payload = {"content": f"**Dynamic Challenges - {date_formatted}**\n\n{challenges_text}"}
         response = requests.post(WEBHOOK_URL, json=payload)
         return response.status_code
 
-def daily_job():
+def Dynamic_job():
     try:
         challenges, date_str = compute_challenges()
         status = post_challenges(challenges, date_str)
@@ -212,20 +212,20 @@ def daily_job():
 if __name__ == "__main__":
     import sys
     
-    print("Daily Challenges Bot starting...")
+    print("Dynamic Challenges Bot starting...")
     if WEBHOOK_URL != "YOUR_WEBHOOK_URL_HERE":
         print(f"Webhook URL: {WEBHOOK_URL[:30]}...")
     else:
         print("Webhook URL: NOT SET (will print to console)")
 
     if "--post-now" in sys.argv:
-        daily_job()
+        Dynamic_job()
         sys.exit(0)
 
-    daily_job()
+    Dynamic_job()
 
-    schedule.every().day.at("00:00").do(daily_job)
-    print("Scheduled daily job at 00:00 UTC. Press Ctrl+C to stop.")
+    schedule.every().day.at("00:00").do(Dynamic_job)
+    print("Scheduled Dynamic job at 00:00 UTC. Press Ctrl+C to stop.")
 
     while True:
         schedule.run_pending()

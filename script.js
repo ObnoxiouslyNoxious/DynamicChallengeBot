@@ -14241,7 +14241,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (day === 1 || day === 21 || day === 31) suffix = 'st';
         else if (day === 2 || day === 22) suffix = 'nd';
         else if (day === 3 || day === 23) suffix = 'rd';
-        titleEl.textContent = 'Daily Challenges - ' + day + suffix + ' ' + month + ' ' + year;
+        titleEl.textContent = 'Dynamic Challenges - ' + day + suffix + ' ' + month + ' ' + year;
     }
 
     var killIdx = clampIndex(Math.floor(lcgRand(seed, 1 * 13) * POOL_KILL.length), POOL_KILL.length);
