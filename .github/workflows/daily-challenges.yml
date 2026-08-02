@@ -1,4 +1,4 @@
-name: Post Daily Challenges
+name: Post Dynamic Challenges
 
 on:
   workflow_dispatch:
