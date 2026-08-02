@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Challenges &amp; Leaderboard - Project Zomboid</title>
+  <title>Dynamic Challenges &amp; Leaderboard - Project Zomboid</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="img/dcsfavicon.png" type="image/png">
 </head>
 <body>
   <div class="panel">
-    <div class="panel-title" id="panel-title">Daily Challenges</div>
+    <div class="panel-title" id="panel-title">Dynamic Challenges</div>
     <div class="panel-tabs">
       <button class="tab-btn" data-tab="about">Information</button>
       <button class="tab-btn active" data-tab="challenges">Challenges</button>
@@ -21,11 +21,11 @@
         <div class="challenges-list" id="challenges-list"></div>
       </div>
       <div class="tab-footer">
-        <div class="footer-text">Challenges reset Daily at Midnight UTC</div>
+        <div class="footer-text">Challenges reset at Midnight UTC</div>
         <br>
-        <div class="footer-text">Complete all 7 Daily Challenges to<br>reveal the Token Vendor's Locations</div>
+        <div class="footer-text">Complete all 7 Challenges to<br>reveal the Token Vendor's Locations</div>
         <br>
-        <div class="footer-text">Maintain a Daily Streak of 28 Days<br>to be awarded Bonus Tokens</div>
+        <div class="footer-text">Maintain a Streak of 28 Days<br>to be awarded Bonus Tokens</div>
       </div>
     </div>
     <div class="tab-content" id="tab-about">
@@ -37,9 +37,9 @@
       <div class="about-content">
         <div class="about-panel">
           <div class="about-section about-aboutinfo active" id="about-aboutinfo">
-            <div class="supporters-header">About<br>[B42] Daily Challenges &amp; Leaderboard [SP/MP]</div>
+            <div class="supporters-header">About<br>[B42] Dynamic Challenges &amp; Leaderboard [SP/MP]</div>
             <div class="about-section-body">
-              <div class="about-text">Daily Challenges &amp; Leaderboard gives your Project Zomboid playthrough a brand-new progression system which incentivizes Players to keep logging in Daily. Every day at Midnight (UTC), 7 new Challenges become available for Players to complete. Complete Challenges to earn tokens and then exchange those tokens for Items at the 'Token Vendor'.</div>
+              <div class="about-text">Dynamic Challenges &amp; Leaderboard gives your Project Zomboid playthrough a brand-new progression system which incentivizes regular log-ins. At a configurable set 'Rotation' time, 7 new Challenges become available for Players to complete. Complete Challenges to earn tokens and then exchange those tokens for Items at the 'Token Vendor'.</div>
             </div>
             <div class="supporters-header">Challenge Types</div>
             <div class="about-section-body">
@@ -54,15 +54,15 @@
             </div>
             <div class="supporters-header">Streaks &amp; Rewards</div>
             <div class="about-section-body">
-              <div class="about-text">Complete 1 Challenge per day to maintain a Streak. Maintaining a Daily Streak pushes you through 4 reward tiers over 28 days. Early tiers pay 1 Token per Challenge; the final tier pays 4 Tokens per Challenge. Finish all 7 Challenges in one day for bonus Tokens. Complete a 28 day Streak for a 25-token milestone before the cycle resets.</div>
+              <div class="about-text">Complete 1 Challenge per Rotation to maintain a Streak, pushing you through 4 Streak Levels. The first Level pays 1 Token per Challenge, the final Level pays 4 per Challenge. Finish all 7 Challenges before Rotation for bonus Tokens, and holding a Streak through Level 4 nets a 25-token milestone before the cycle resets.</div>
             </div>
             <div class="supporters-header">Token Vendors</div>
             <div class="about-section-body">
-              <div class="about-text">Exchange Tokens for Items. Available Items and quantities are randomized daily. Two random Vendor locations spawn each day — one on the east side of the map, one on the west. Each one carries different items. Complete all 7 Challenges per day to unlock their Locations.</div>
+              <div class="about-text">Exchange Tokens for Items. Each Vendor shows a rotating selection (~18 items, balanced across categories) instead of the full catalogue. Stock and selection are randomized with Rotation, and Admins can adjust the randomness range via "Limit Shop Items" in DCS Settings. Two random Vendor locations (1x East + 1x West) spawn each Rotation, carrying different items. Admins can configure how many Challenges need to be completed to unlock their locations.</div>
             </div>
             <div class="supporters-header">Leaderboard/Hall of Fame</div>
             <div class="about-section-body">
-              <div class="about-text">Earn your place on the Leaderboard by competing with other Players on the Server for the Most Challenges Completed, Longest Streak, Fastest Challenge Completion time and more. In Singleplayer, the Hall of Fame displays your Character's best efforts in Most Challenges Complete and Fastest Completion Times.</div>
+              <div class="about-text">Compete with other Players (or your previous Characters in Singleplayer) for Most Challenges Completed, Longest Streak, Fastest Completion time and more. Singleplayer's personal Hall of Fame tracks Most Completed, Longest Streak, and Fastest 7.</div>
             </div>
             <div class="supporters-header">Admin Tools</div>
             <div class="about-section-body">
@@ -75,11 +75,14 @@
               <div class="about-text">- Server authoritative validation to prevent client-side exploits.</div>
               <div class="about-text">- Compatible with most other Mods. All Items from other Mods are available to be added to the Token Vendor Shop via the Admin's 'Vendor Editor' panel. May have some visual conflicts with Mods that add a sidebar icon or Mods that add a button to the Vanilla PZ Admin Menu. Modded Weapons at this time do not count towards kill challenges (but may be supported in Future Updates).</div>
               <div class="about-text">- Supports all Font Size Settings.</div>
-              <div class="about-text">- Supported Languages: EN, FR, DE, ES, PTBR, RU, AR, CN</div>
+              <div class="about-text">- Translations for all Supported PZ Languages</div>
             </div>
             <div class="supporters-header">Future Updates</div>
             <div class="about-section-body">
+              <div class="about-text">- Adding new B42.20 Challenge Locations</div>
               <div class="about-text">- More Challenge Types (Medical, PvP etc.) and extra Challenge variety.</div>
+              <div class="about-text">- Controller support</div>
+              <div class="about-text">- More Admin Settings</div>
               <div class="about-text">- Translation Improvements (Full translations for Challenges with Item Names, Locations, Build/Craft Recipes + more)</div>
               <div class="about-text">- V2 System including Admin configuration panel for toggling reward modes, options for currency types and default reward values, Vendor settings, rolling leaderboard history + more</div>
             </div>
@@ -94,9 +97,9 @@
             <div class="footer-heading">Download the Mod on Steam:</div>
             <br>
             <a class="steam-mod-card" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3752111970" target="_blank" rel="noopener noreferrer">
-              <img class="steam-mod-thumb" src="img/dcs.png" alt="Daily Challenges &amp; Leaderboard" loading="lazy">
+              <img class="steam-mod-thumb" src="img/dcs.png" alt="Dynamic Challenges &amp; Leaderboard" loading="lazy">
               <div class="steam-mod-info">
-                <div class="steam-mod-title" id="dc-title">[B42] Daily Challenges &amp; Leaderboard [MP]</div>
+                <div class="steam-mod-title" id="dc-title">[B42] Dynamic Challenges &amp; Leaderboard [MP]</div>
                 <div class="steam-mod-stats">
                   <span class="steam-stat" title="Unique Visitors">
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -119,14 +122,14 @@
             </a>
           </div>
           <div class="about-section about-faq" id="about-faq">
-            <div class="supporters-header faq-header">"Can I get the Daily Challenges auto-posted to my Discord Server?"</div>
+            <div class="supporters-header faq-header">"Can I get the Dynamic Challenges auto-posted to my Discord Server?"</div>
             <div class="about-section-body">
               <div class="about-text">Sure. Here's how to do it.</div>
               <br>
               <div class="about-text">1. <a class="about-link" href="https://discord.gg/invite/yYB4EDxm2h" target="_blank" rel="noopener noreferrer">Join my Discord Server</a></div>
-              <div class="about-text">2. Navigate to the #daily-challenges channel</div>
+              <div class="about-text">2. Navigate to the #dynamic-challenges channel</div>
               <div class="about-text">3. Click 'Follow'. A prompt will appear asking what server and channel you'd like the Bot to post in.</div>
-              <div class="about-text">4. Wait for Midnight UTC, when the Bot will auto-post the new Daily Challenges.</div>
+              <div class="about-text">4. Wait for Midnight UTC, when the Bot will auto-post the new Dynamic Challenges.</div>
             </div>
             <div class="supporters-header faq-header">"Does this Mod work in Singleplayer and Multiplayer?"</div>
             <div class="about-section-body">
@@ -134,7 +137,7 @@
             </div>
             <div class="supporters-header faq-header">"Is the Mod compatible with Build 41?"</div>
             <div class="about-section-body">
-              <div class="about-text">No, Daily Challenges is only compatible with Build 42.15+ and was developed on Build 42.19</div>
+              <div class="about-text">No, Dynamic Challenges is only compatible with Build 42.15+ and was developed on Build 42.19</div>
             </div>
             <div class="supporters-header faq-header">"I've found a Bug, what do I do?"</div>
             <div class="about-section-body">
@@ -158,7 +161,7 @@
               <div class="about-text">helps get them fixed ASAP and</div>
               <div class="about-text">ensures the Mod is enjoyable for everyone.</div>
             </div>
-            <div class="supporters-header faq-header">"What Mods is Daily Challenges Compatible with?"</div>
+            <div class="supporters-header faq-header">"What Mods is Dynamic Challenges Compatible with?"</div>
             <div class="about-section-body">
               <div class="about-text">Compatible with most other Mods. Items from other Mods can be added to the Token Vendor via the Vendor Editor. May visually conflict with Mods that add a sidebar icon or a button to the Vanilla PZ Admin Menu. Modded weapons don't yet count towards kill challenges.</div>
               <br>
