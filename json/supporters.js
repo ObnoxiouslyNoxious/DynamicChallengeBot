@@ -2,7 +2,9 @@ window.SUPPORTERS_DATA = {
   "subscribers": {
     "gold": [],
     "silver": [],
-    "bronze": []
+    "bronze": [
+      "Itsbringr"
+    ]
   },
   "recent": [
     {
