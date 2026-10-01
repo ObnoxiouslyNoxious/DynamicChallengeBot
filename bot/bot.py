@@ -151,7 +151,7 @@ def post_challenges(challenges, date_str):
         return None
 
     html_path = WEBSITE_DIR / "index.html"
-    screenshot_path = WEBSITE_DIR / "bot" / "temp_screenshot.png"
+    screenshot_path = WEBSITE_DIR / "img" / "latest-challenges.png"
 
     try:
         with sync_playwright() as p:
@@ -185,9 +185,6 @@ def post_challenges(challenges, date_str):
 
         files = {"file": ("Dynamic_challenges.png", image_bytes, "image/png")}
         response = requests.post(WEBHOOK_URL, files=files)
-
-        if screenshot_path.exists():
-            screenshot_path.unlink()
 
         return response.status_code
     except Exception as e:
