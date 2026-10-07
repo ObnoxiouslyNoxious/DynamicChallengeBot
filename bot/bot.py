@@ -41,6 +41,23 @@ def lcg_rand(seed, index):
 def clamp_index(idx, pool_length):
     return max(0, min(idx, pool_length - 1))
 
+def seeded_index(seed, count, salt):
+    state = (seed + salt) % 4294967296
+    for _ in range(4):
+        state = (1664525 * state + 1013904223) % 4294967296
+    return 1 + int((state / 4294967296) * count)
+
+def mix_index(seed, count, salt):
+    modulus = 67108859
+    x = (seed + salt * 7919) % modulus
+    for _ in range(4):
+        x = (x * x + 12345) % modulus
+    return 1 + int((x / modulus) * count)
+
+def pick_vendor_location(towns, seed, seed_offset):
+    town = towns[mix_index(seed, len(towns), seed_offset * 1000 + 1 * 10 + 1) - 1]
+    return town['locs'][mix_index(seed, len(town['locs']), seed_offset * 1000 + 1 * 10 + 2) - 1]
+
 def group_by_town(region):
     towns = []
     by_name = {}
@@ -76,10 +93,8 @@ def compute_challenges():
     east_towns = group_by_town('East')
     west_towns = group_by_town('West')
 
-    east_town = east_towns[seed % len(east_towns)]
-    west_town = west_towns[(seed + 7) % len(west_towns)]
-    east_loc = east_town['locs'][seed % len(east_town['locs'])]
-    west_loc = west_town['locs'][(seed + 3) % len(west_town['locs'])]
+    east_loc = pick_vendor_location(east_towns, seed, 0)
+    west_loc = pick_vendor_location(west_towns, seed, 11)
 
     exclude_towns = {east_loc['town'], west_loc['town']}
 
@@ -95,12 +110,10 @@ def compute_challenges():
     quest_item_idx = clamp_index(int(lcg_rand(seed, 3 * 17) * len(QUEST_ITEMS)), len(QUEST_ITEMS))
     quest_item = QUEST_ITEMS[quest_item_idx]
 
-    visit_npc_idx = clamp_index(int(seed * 100) % len(NPC_NAMES), len(NPC_NAMES))
+    visit_npc_idx = seeded_index(seed, len(NPC_NAMES), 17) - 1
     visit_npc = NPC_NAMES[visit_npc_idx]
 
-    quest_npc_idx = visit_npc_idx
-    while quest_npc_idx == visit_npc_idx:
-        quest_npc_idx = clamp_index(int((seed + 0.5) * 100) % len(NPC_NAMES), len(NPC_NAMES))
+    quest_npc_idx = (visit_npc_idx + seeded_index(seed, len(NPC_NAMES) - 1, 31)) % len(NPC_NAMES)
     quest_npc = NPC_NAMES[quest_npc_idx]
 
     challenges = [

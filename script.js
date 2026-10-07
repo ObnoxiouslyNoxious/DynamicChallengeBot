@@ -14209,6 +14209,28 @@ function clampIndex(idx, poolLength) {
     return Math.max(0, Math.min(idx, poolLength - 1));
 }
 
+function seededIndex(seed, count, salt) {
+    var state = (seed + salt) % 4294967296;
+    for (var i = 0; i < 4; i++) {
+        state = (1664525 * state + 1013904223) % 4294967296;
+    }
+    return 1 + Math.floor((state / 4294967296) * count);
+}
+
+function mixIndex(seed, count, salt) {
+    var modulus = 67108859;
+    var x = (seed + salt * 7919) % modulus;
+    for (var i = 0; i < 4; i++) {
+        x = (x * x + 12345) % modulus;
+    }
+    return 1 + Math.floor((x / modulus) * count);
+}
+
+function pickVendorLocation(towns, seed, seedOffset) {
+    var town = towns[mixIndex(seed, towns.length, seedOffset * 1000 + 1 * 10 + 1) - 1];
+    return town.locs[mixIndex(seed, town.locs.length, seedOffset * 1000 + 1 * 10 + 2) - 1];
+}
+
 function groupByTown(region) {
     const towns = [];
     const byName = {};
@@ -14259,10 +14281,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var eastTowns = groupByTown('East');
     var westTowns = groupByTown('West');
 
-    var eastTown = eastTowns[seed % eastTowns.length];
-    var westTown = westTowns[(seed + 7) % westTowns.length];
-    var eastLoc = eastTown.locs[seed % eastTown.locs.length];
-    var westLoc = westTown.locs[(seed + 3) % westTown.locs.length];
+    var eastLoc = pickVendorLocation(eastTowns, seed, 0);
+    var westLoc = pickVendorLocation(westTowns, seed, 11);
 
     var excludeTowns = {};
     excludeTowns[eastLoc.town] = true;
@@ -14290,15 +14310,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var questItemIdx = clampIndex(questItemRawIdx, QUEST_ITEMS.length);
     var questItem = QUEST_ITEMS[questItemIdx];
 
-    var visitNpcRawIdx = Math.floor(seed * 100) % NPC_NAMES.length;
-    var visitNpcIdx = clampIndex(visitNpcRawIdx, NPC_NAMES.length);
+    var visitNpcIdx = seededIndex(seed, NPC_NAMES.length, 17) - 1;
     var visitNPC = NPC_NAMES[visitNpcIdx];
 
-    var questNpcIdx = visitNpcIdx;
-    while (questNpcIdx === visitNpcIdx) {
-        var rawIdx = Math.floor((seed + 0.5) * 100) % NPC_NAMES.length;
-        questNpcIdx = clampIndex(rawIdx, NPC_NAMES.length);
-    }
+    var questNpcIdx = (visitNpcIdx + seededIndex(seed, NPC_NAMES.length - 1, 31)) % NPC_NAMES.length;
     var questNPC = NPC_NAMES[questNpcIdx];
 
     var challenges = [
